@@ -1,2 +1,1 @@
-# Victorian Plumbing Tech Test
-This is a tech test completed for Victorian Plumbing. The project took 3 hours, and used React.js on the front-end with their public API as the back-end. Create React App was used to cut down initial set-up time.
+
