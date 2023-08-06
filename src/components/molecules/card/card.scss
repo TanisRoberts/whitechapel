@@ -1,0 +1,118 @@
+.card {
+  background-color: $COL_CARD_BACKGROUND;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  
+  &__top {
+    width: 100%;
+    overflow: hidden;
+    flex-basis: 1;
+    
+    .card__image {
+      position: relative;
+      width: 100%;
+      display: block;
+      text-decoration: none;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    flex-basis: 1;
+    flex-grow: 1;
+
+    .card {
+      &__title {
+        display: flex;
+        flex-flow: column nowrap;
+      }
+
+      &__brand-wrapper {
+        width: 50%;
+        overflow: hidden;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+
+        .card__brand {
+          width: 100%;
+
+          &-image {
+            width: 100%;
+          }
+        }
+      }
+      
+      &__name {
+        display: block;
+        padding: 5px;
+        color: $COL_TEXT_DARK;
+        font-weight: 600;
+      }
+      
+      &__details {
+        padding: 5px;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+      }
+
+      &__price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .card__cost {
+          display: flex; 
+          flex-flow: column nowrap;
+
+          &--current {
+            font-size: 20px;
+            font-weight: 700;
+          }
+
+          &--original {
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: line-through;
+            color: transparentize($color: $COL_TEXT_DARK, $amount: 0.7)
+          }
+        }
+
+        .card__monthly {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5%;
+        }
+      }
+
+      &__stock {
+        &--yes {
+          color: $COL_GOOD;
+        }
+
+        &--no {
+          color: $COL_BAD;
+        }
+      }
+
+      &__reviews {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+      }
+    }
+  }
+}

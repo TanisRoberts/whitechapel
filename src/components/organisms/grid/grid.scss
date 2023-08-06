@@ -1,0 +1,29 @@
+.grid {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__items {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  &__card-wrapper {
+    // width: calc(33% - 50px);
+    // margin: 25px;
+    width: calc(calc(100% / $GRID_COLUMNS) - calc(2 * $GRID_SPACING));
+    margin: $GRID-SPACING;
+  }
+
+  &__toolbar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  &__search {
+    width: 40%;
+  }
+}

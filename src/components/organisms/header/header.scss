@@ -1,0 +1,14 @@
+.header {
+  background-color: $COL_HEADER_BACKGROUND;
+  color: $COL_HEADER_COLOR;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: $HEIGHT_HEADER;
+  z-index: 7997;
+
+  .logo {
+    padding: 15px;
+  }
+}
