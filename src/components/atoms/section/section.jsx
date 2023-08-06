@@ -1,6 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import Card from '../../molecules/card/card';
-import { CircularProgress } from '@mui/material';
+import React from 'react';
 
 export default function Section (props) {
 

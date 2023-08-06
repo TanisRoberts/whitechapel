@@ -50,6 +50,11 @@ export default function Card (props) {
           symbol = "£";
           break;
         }
+
+        default: {
+          symbol = "?";
+          break;
+        }
       }
 
       let price = priceData.priceIncTax;
@@ -70,7 +75,7 @@ export default function Card (props) {
         const itemAmount = Math.round((price / item.price) * 100) / 100;
 
         monthlyDisplay = <div className='card__monthly'>
-          <img height='50' width='50' src={item.image} />
+          <img height='50' width='50' src={item.image} alt={item.name}/>
           <p>Finance from just {itemAmount} <a href={item.url}>{item.name}</a> / month!</p>
         </div>
       }
@@ -91,7 +96,7 @@ export default function Card (props) {
     const getStock = (stockData) => {
       let result = <></>;
 
-      if (stockData.status == "G") {
+      if (stockData.status === "G") {
         result = <p className='card__stock--yes'>In Stock</p>
       } else {
         result = <p className='card__stock--no'>Not Available</p>
@@ -123,6 +128,7 @@ export default function Card (props) {
           className='card__image' 
           href={"https://www.victorianplumbing.co.uk" + data.slug}
           target='_blank'
+          rel="noreferrer"
           >
             <img 
             src={data.image.url} 
@@ -137,6 +143,7 @@ export default function Card (props) {
               className='card__brand' 
               href={"https://www.victorianplumbing.co.uk" + data.brand.slug}
               target='_blank'
+              rel="noreferrer"
               >
                 <img 
                 className='card__brand-image' 
@@ -149,6 +156,7 @@ export default function Card (props) {
             className='card__name'
             href={"https://www.victorianplumbing.co.uk" + data.slug}
             target='_blank'
+            rel="noreferrer"
             >
               {data.productName}
             </a>

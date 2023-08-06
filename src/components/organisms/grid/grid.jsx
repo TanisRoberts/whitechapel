@@ -1,12 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../../molecules/card/card';
-import { CircularProgress, Select, MenuItem, ListSubheader, Input, FilledInput, Autocomplete } from '@mui/material';
+import { CircularProgress, Select, MenuItem, ListSubheader, Input} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
-const searchOptions = [ //This seems to be all the API will let me see :(
-  "toilets",
-  "baths",
-]
 
 export default function Grid (props) {
   const [data, setData] = useState(null);
@@ -26,9 +21,6 @@ export default function Grid (props) {
       })
     };
 
-    console.log("search", search); //DEBUG
-    console.log("sort", sort); //DEBUG
-
     fetch(
       'https://spanishinquisition.victorianplumbing.co.uk/interviews/listings?apikey=yj2bV48J40KsBpIMLvrZZ1j1KwxN4u3A83H8IBvI',
       requestOptions
@@ -38,9 +30,42 @@ export default function Grid (props) {
       .catch(error => console.error(error));
   }, [sort, search]);
 
-  console.log(data); //DEBUG
+  return <div className='grid'>
+    <div className='grid__toolbar'>
+      <Input
+      className='grid__search'
+      type='text'
+      startAdornment={<SearchIcon />}
+      onChange={(event) => setSearch(event.target.value)}
+      color="success"
+      placeholder="Only accepts 'baths' or 'toilets' :("
+      />
+      <Select 
+      className='grid__sort'
+      label="Sort by"
+      onChange={(event) => setSort(event.target.value)}
+      defaultValue={1}
+      >
+        <MenuItem value={1}>Recommended</MenuItem>
+        <ListSubheader>Price</ListSubheader>
+        <MenuItem value={2}>Low to High</MenuItem>
+        <MenuItem value={3}>High to Low</MenuItem>
+        <MenuItem value={4}>Largest Discount</MenuItem>
+      </Select>
 
-//   const data = [
+    </div>
+    <div className='grid__items'>
+      {data ? data.map((product) => {
+        return <div className='grid__card-wrapper'>
+          <Card data={product} />
+        </div>
+      }
+      ) : <CircularProgress color="success" />}
+    </div>
+  </div>
+}
+
+//   const staticData = [
 //     {
 //         "id": "86b6ed51-7585-4955-8cb2-4a63d451fba1-9243F:en-GB",
 //         "legacyId": "20476",
@@ -2683,38 +2708,3 @@ export default function Grid (props) {
 //         "score": 15.864701
 //     }
 // ];
-
-  return <div className='grid'>
-    <div className='grid__toolbar'>
-      <Input
-      className='grid__search'
-      type='text'
-      startAdornment={<SearchIcon />}
-      onChange={(event) => setSearch(event.target.value)}
-      color="success"
-      placeholder="Only accepts 'baths' or 'toilets' :("
-      />
-      <Select 
-      className='grid__sort'
-      label="Sort by"
-      onChange={(event) => setSort(event.target.value)}
-      defaultValue={1}
-      >
-        <MenuItem value={1}>Recommended</MenuItem>
-        <ListSubheader>Price</ListSubheader>
-        <MenuItem value={2}>Low to High</MenuItem>
-        <MenuItem value={3}>High to Low</MenuItem>
-        <MenuItem value={4}>Largest Discount</MenuItem>
-      </Select>
-
-    </div>
-    <div className='grid__items'>
-      {data ? data.map((product) => {
-        return <div className='grid__card-wrapper'>
-          <Card data={product} />
-        </div>
-      }
-      ) : <CircularProgress color="success" />}
-    </div>
-  </div>
-}
